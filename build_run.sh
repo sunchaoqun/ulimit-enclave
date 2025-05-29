@@ -2,7 +2,7 @@ nitro-cli terminate-enclave --all
 
 rm enclave.eif 
 
-docker build -t enclave-test -f Dockerfile.enclave .
+docker build --network=host -t enclave-test -f Dockerfile.enclave.ubuntu .
 
 nitro-cli build-enclave --docker-uri enclave-test:latest --output-file enclave.eif
 

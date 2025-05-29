@@ -12,7 +12,7 @@ def main():
 
     # 尝试修改限制
     try:
-        #resource.setrlimit(resource.RLIMIT_NOFILE, (65535, 65535))
+        resource.setrlimit(resource.RLIMIT_NOFILE, (65535, 65535))
         print_limits("After setrlimit")
     except Exception as e:
         print(f"Failed to set limit: {e}")

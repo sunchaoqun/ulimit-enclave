@@ -1,0 +1,18 @@
+FROM public.ecr.aws/amazonlinux/amazonlinux:2
+
+RUN yum update -y && yum install -y python3
+
+# 创建必要的目录和文件
+RUN mkdir -p /etc/security
+RUN touch /etc/security/limits.conf
+
+# 设置 ulimit
+RUN echo "* soft nofile 65535" >> /etc/security/limits.conf
+RUN echo "* hard nofile 65535" >> /etc/security/limits.conf
+
+WORKDIR /app
+COPY . /app/
+
+
+CMD ["python3", "/app/enclave.py"]
+
